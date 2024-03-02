@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from littlecup import pool
 
 load_dotenv()
-TOKEN = os.getenv('TESTING_TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN')
 DEV_GUILD_ID = os.getenv('DEV_GUILD_ID')
 SECRET_BASE_ID = os.getenv('SECRET_BASE_ID')
 
