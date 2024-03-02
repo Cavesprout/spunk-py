@@ -2,12 +2,14 @@ import os
 import requests
 import discord
 import json
+import random
 from discord.ext import commands
 from discord import app_commands
 from dotenv import load_dotenv
+from littlecup import pool
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('TESTING_TOKEN')
 DEV_GUILD_ID = os.getenv('DEV_GUILD_ID')
 SECRET_BASE_ID = os.getenv('SECRET_BASE_ID')
 
@@ -60,7 +62,19 @@ async def server(interaction:discord.Interaction, action: app_commands.Choice[st
             await interaction.response.send_message("Something went wrong. Contact Vi.")
     
     
-
+@tree.command(
+    name="babyfight", 
+    description="Grab a collection of babies to use as a roster",
+    guilds=[discord.Object(id=DEV_GUILD_ID), discord.Object(id=SECRET_BASE_ID)]
+)
+@app_commands.describe(count="How many babies do you want to generate?")
+@app_commands.rename(count="count")
+async def roster(interaction:discord.Interaction, count: int):
+    rand_pokes = ""
+    for i in range(count):
+        rand_pokes += str(pool[random.randint(0, len(pool))]) + "\n"
+    
+    await interaction.response.send_message(rand_pokes)
 
 
 
@@ -78,5 +92,6 @@ async def on_ready():
 
 #     if message.content.startswith('$hello'):
 #         await message.channel.send('Hello!')
+
 
 client.run(TOKEN)
