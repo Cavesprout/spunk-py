@@ -35,7 +35,8 @@ async def ping(interaction:discord.Interaction):
 @app_commands.rename(server_name="server_name")
 @app_commands.choices(server_name=[
     app_commands.Choice(name="LiteVanilla", value="minecraft-vanilla"),
-    app_commands.Choice(name="Palworld", value="palworld")
+    app_commands.Choice(name="Palworld", value="palworld"),
+    app_commands.Choice(name="Pemnis Zome", value="wormpack2")
 ])
 @app_commands.describe(action="What would you like to do?")
 @app_commands.rename(action="action")
